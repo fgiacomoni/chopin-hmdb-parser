@@ -32,7 +32,6 @@ workflows:
       - publish_snapshot:
           requires:
             - test_and_coverage_jvm
-            - planemo_stage
           context:
             - DOCKER_CONTEXT
             - CREDENTIAL_CONTEXT
