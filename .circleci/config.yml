@@ -36,7 +36,7 @@ jobs:
           name: Compile - JVM
           command: cat /dev/null | sbt test:compile
 
-  test_and_coverage_jvm:
+  test:
     executor: openjdk
     environment:
       JVM_OPTS: -Xmx3200m
@@ -53,8 +53,6 @@ jobs:
           name: Test JVM env and Coverage
           command: |
             cat /dev/null | sbt clean coverage Test/test coverageReport
-            bash <(curl -s https://codecov.io/bash)
-            bash <(curl -Ls https://coverage.codacy.com/get.sh) report
 
       - store_artifacts:
           path: target/test-reports

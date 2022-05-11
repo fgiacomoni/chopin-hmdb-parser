@@ -1,4 +1,5 @@
 # chopin-hmdb-parser
+[![chopin-hmdb-parser-circleci](https://circleci.com/gh/fgiacomoni/chopin-hmdb-parser.svg?style=shield)](https://app.circleci.com/pipelines/github/fgiacomoni)
 
 ```bash
 sbt test
