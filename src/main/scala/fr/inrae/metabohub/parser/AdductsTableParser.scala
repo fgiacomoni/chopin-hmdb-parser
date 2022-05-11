@@ -12,6 +12,6 @@ case class AdductsTableParser(csv:String) {
       .option("delimiter", ";")
       .option("header", "true")
       .option("schema", schema)
-      .csv("ref_pos_adducts.tsv")
+      .csv(csv)
   }
 }

@@ -15,7 +15,8 @@ object HmdbParserTest extends TestSuite {
 
   def tests: Tests = Tests {
     test("read successfully HMDB formatted XML...") {
-      val xmlFile : String = getClass.getResource("csf_metabolites_dump.xml").getPath
+      //val xmlFile : String = getClass.getResource("csf_metabolites_dump.xml").getPath
+      val xmlFile = "src/test/resources/csf_metabolites_dump.xml"
       val df: HmdbXmlParser = HmdbXmlParser(xmlFile)
       df.read(spark).show()
     }

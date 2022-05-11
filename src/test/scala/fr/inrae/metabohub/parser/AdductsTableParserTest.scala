@@ -14,7 +14,9 @@ object AdductsTableParserTest extends TestSuite {
 
   def tests: Tests = Tests {
     test("read successfully Adducts table formatted CSV...") {
-      val csvFile : String = getClass.getResource("ref_pos_adducts.tsv").getPath
+      //val csvFile : String = getClass.getResource("ref_pos_adducts.tsv").getPath
+      val csvFile = "src/test/resources/ref_pos_adducts.tsv"
+      println(csvFile)
       val df = AdductsTableParser(csvFile)
       println(df)
     }

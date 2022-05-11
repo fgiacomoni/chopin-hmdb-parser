@@ -1,6 +1,6 @@
 package fr.inrae.metabohub.application
 
-import fr.inrae.metabohub.parser.HmdbParser
+import fr.inrae.metabohub.parser._
 import org.apache.spark.sql.SparkSession
 
 object Main {
@@ -18,7 +18,7 @@ object Main {
       .appName("chopin-hmdb-parser exe")
       .getOrCreate()
 
-    HmdbParser(args(0)).read(spark).show()
+    HmdbXmlParser(args(0)).read(spark).show()
 
   }
 }

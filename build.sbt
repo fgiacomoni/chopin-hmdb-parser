@@ -13,6 +13,7 @@ libraryDependencies ++= Seq(
       //"org.wvlet.airframe" %%% "airframe-log" % airframeLogVersion,
       //"io.lemonlabs" %%% "scala-uri" % scalaUriVersion,
       "org.apache.spark"%% "spark-sql" % sparkVersion % "provided",
+      "com.databricks" %% "spark-xml" % "0.14.0",
       "com.lihaoyi" %% "utest" % utestVersion % Test
 )
 
