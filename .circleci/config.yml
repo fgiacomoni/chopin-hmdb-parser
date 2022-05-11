@@ -1,0 +1,61 @@
+#
+#  - Compile JVM/Js
+#
+version: 2.1
+orbs:
+  node: circleci/node@5.0.2
+workflows:
+  compile-workflow:
+    jobs:
+      - compile
+      - test:
+          requires:
+            - compile
+executors:
+
+  openjdk:
+      working_directory: ~/repo
+      docker:
+        - image: circleci/openjdk:8-jdk
+
+jobs:
+  compile:
+    executor: openjdk
+    environment:
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+    steps:
+      - checkout
+      - setup_remote_docker
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.sbt" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run:
+          name: Compile - JVM
+          command: cat /dev/null | sbt test:compile
+
+  test:
+    executor: openjdk
+    environment:
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+    steps:
+      - checkout
+      - setup_remote_docker
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.sbt" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run:
+          name: Test JVM env and Coverage
+          command: |
+            cat /dev/null | sbt clean coverage Test/test coverageReport
+
+      - store_artifacts:
+          path: target/test-reports
+
+
+
