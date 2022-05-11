@@ -29,17 +29,6 @@ workflows:
             - compile
           context:
             - DOCKER_CONTEXT
-      - planemo_stage:
-          context:
-            - DOCKER_CONTEXT
-          filters:
-            tags:
-              ignore: /.*/
-            branches:
-              only:
-                - develop
-                - main
-                - master
       - publish_snapshot:
           requires:
             - test_and_coverage_jvm
