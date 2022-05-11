@@ -12,8 +12,9 @@ libraryDependencies ++= Seq(
       //"com.lihaoyi" %%% "upickle" % upickleVersion,
       //"org.wvlet.airframe" %%% "airframe-log" % airframeLogVersion,
       //"io.lemonlabs" %%% "scala-uri" % scalaUriVersion,
-      "org.apache.spark"%% "spark-sql" % sparkVersion,
-      "com.lihaoyi" %% "utest" % utestVersion % Test
+      "org.apache.spark"%% "spark-sql" % sparkVersion % "provided",
+      "com.lihaoyi" %% "utest" % utestVersion % Test,
+      "org.apache.spark" %% "spark-xml" % sparkVersion % "provided",
     )
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
