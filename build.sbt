@@ -13,8 +13,16 @@ libraryDependencies ++= Seq(
       //"org.wvlet.airframe" %%% "airframe-log" % airframeLogVersion,
       //"io.lemonlabs" %%% "scala-uri" % scalaUriVersion,
       "org.apache.spark"%% "spark-sql" % sparkVersion % "provided",
-      "com.lihaoyi" %% "utest" % utestVersion % Test,
-      "org.apache.spark" %% "spark-xml" % sparkVersion % "provided",
-    )
+      "com.lihaoyi" %% "utest" % utestVersion % Test
+)
+
+testFrameworks += new TestFramework("utest.runner.Framework")
+//scalacOptions ++= Seq("-deprecation", "-feature")
+Test / parallelExecution := false
+coverageMinimumStmtTotal := 86
+coverageFailOnMinimum := false
+coverageHighlighting := true
+
+assembly / target := file("assembly")
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
