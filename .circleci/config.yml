@@ -8,7 +8,7 @@ workflows:
   compile-workflow:
     jobs:
       - compile
-      - test_and_coverage_jvm:
+      - test:
           requires:
             - compile
 executors:
