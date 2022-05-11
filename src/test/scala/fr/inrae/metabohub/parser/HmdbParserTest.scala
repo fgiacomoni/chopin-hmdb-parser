@@ -4,6 +4,7 @@ import org.apache.spark.sql.SparkSession
 import utest.{TestSuite, Tests, test}
 
 import java.io.File
+import scala.io.Source
 
 object HmdbParserTest extends TestSuite {
   val spark = SparkSession
@@ -13,7 +14,8 @@ object HmdbParserTest extends TestSuite {
 
   def tests: Tests = Tests {
     test("read CSV non undefined file") {
-      val df = HmdbParser(new File("/tmp/File"))
+      val csvFile : String = getClass.getResource("ref_pos_adducts.tsv").getPath
+      val df = HmdbParser(csvFile)
       println(df)
     }
   }

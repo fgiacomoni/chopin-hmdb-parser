@@ -1,5 +1,5 @@
 import $ivy.`org.apache.spark:spark-sql_2.13:3.2.1`
-
+import $ivy.`org.apache.spark:spark-core_2.13:3.2.1`
 import org.apache.spark.sql.SparkSession
 
 var spark = SparkSession
