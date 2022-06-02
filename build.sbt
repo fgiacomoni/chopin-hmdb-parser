@@ -14,7 +14,8 @@ libraryDependencies ++= Seq(
       //"io.lemonlabs" %%% "scala-uri" % scalaUriVersion,
       "org.apache.spark"%% "spark-sql" % sparkVersion % "provided",
       "com.databricks" %% "spark-xml" % "0.14.0",
-      "com.lihaoyi" %% "utest" % utestVersion % Test
+      "com.lihaoyi" %% "utest" % utestVersion % Test,
+      "com.lihaoyi" %% "os-lib" % "0.8.1"
 )
 
 testFrameworks += new TestFramework("utest.runner.Framework")
@@ -25,5 +26,7 @@ coverageFailOnMinimum := false
 coverageHighlighting := true
 
 assembly / target := file("assembly")
+assembly / assemblyJarName := s"chopin-hmdb-generator_$scalaVersion.jar"
+assembly / logLevel := Level.Info
 
 Global / onChangedBuildSource := ReloadOnSourceChanges

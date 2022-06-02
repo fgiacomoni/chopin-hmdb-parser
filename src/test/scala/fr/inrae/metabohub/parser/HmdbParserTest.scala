@@ -1,11 +1,10 @@
 package fr.inrae.metabohub.parser
 
-import fr.inrae.metabohub.parser.AdductsTableParserTest.getClass
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.{DataFrame, SparkSession, functions}
+import org.apache.spark.sql.functions.col
 import utest.{TestSuite, Tests, test}
 
-import java.io.File
-import scala.io.Source
+import scala.Option.when
 
 object HmdbParserTest extends TestSuite {
   val spark = SparkSession
@@ -18,7 +17,12 @@ object HmdbParserTest extends TestSuite {
       //val xmlFile : String = getClass.getResource("csf_metabolites_dump.xml").getPath
       val xmlFile = "src/test/resources/csf_metabolites_dump.xml"
       val df: HmdbXmlParser = HmdbXmlParser(xmlFile)
-      df.read(spark).show()
+      //val df2 : DataFrame = df.read(spark)
+
+      val df2 = df.filterCSFHmdbType( df.read(spark) )
+
+      df2.write.parquet("src/test/resources/csf_metabolites_dump.parquet")
+
     }
   }
 }
